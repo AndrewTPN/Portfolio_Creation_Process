@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Andrew Nguyen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="main.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">Andrew<span class="accent-dot">.</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="hire-button">Hire me</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container contact-container">
+            <div class="contact-left">
+                <h1 class="contact-title">Let's work together</h1>
+                
+                <p class="contact-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Nesciunt sit illo esse commodi.
+                </p>
+                
+                <form id="contact-form" class="contact-form">
+                    <div class="form-row">
+                        <input type="text" name="name" placeholder="Name" required>
+                        <input type="email" name="email" placeholder="Email address" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="tel" name="phone" placeholder="Phone number">
+                        <select name="service" required>
+                            <option value="" disabled selected>Select a service</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="ui-ux-design">UI/UX Design</option>
+                            <option value="logo-design">Logo Design</option>
+                        </select>
+                    </div>
+                    
+                    <textarea name="message" placeholder="Type your message here." rows="6" required></textarea>
+                    
+                    <button type="submit" class="submit-button">Send message</button>
+                </form>
+            </div>
+            
+            <div class="contact-right">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i data-lucide="phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p>(587)-500-**** </p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i data-lucide="mail"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p>youremail@email.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <div class="contact-icon">
+                            <i data-lucide="map-pin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Address</h3>
+                            <p>Code Corner, Tech Town 13579</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

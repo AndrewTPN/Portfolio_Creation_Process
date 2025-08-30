@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work | Andrew Nguyen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">Andrew<span class="accent-dot">.</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="hire-button">Hire me</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container work-container">
+            <div class="work-left">
+                <div class="project-number" id="project-number">01</div>
+                
+                <h1 class="project-title" id="project-title">Construction Website</h1>
+                
+                <div class="project-tech" id="project-tech">
+                    Built with HTML, CSS, and JavaScript for a responsive and interactive user experience.
+                </div>
+                
+                
+                <div class="project-links">
+                    <a href="https://www.w3lsconstruction.site/" class="project-link" target="_blank">
+                        <i data-lucide="arrow-up-right"></i>
+                    </a>
+                    <a href="https://github.com/AndrewTPN" class="project-link">
+                        <i data-lucide="github"></i>
+                    </a>
+                </div>
+                
+                <p class="project-description" id="project-description">
+                    A user-friendly website built for a construction company.
+                </p>
+            </div>
+            
+            <div class="work-right">
+                <div class="project-image-container">
+                    <img id="project-image" src="constr_imgs/1.png" alt="Construction Website Screenshot">
+                </div>
+                
+                <div class="project-navigation">
+                    <button id="prev-project" class="nav-button">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button id="next-project" class="nav-button">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Image carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Project images array
+            const projectImages = [
+                "constr_imgs/1.png",
+                "constr_imgs/2.png",
+                "constr_imgs/3.png"
+            ];
+            
+            let currentImageIndex = 0;
+            const projectImage = document.getElementById('project-image');
+            const prevButton = document.getElementById('prev-project');
+            const nextButton = document.getElementById('next-project');
+            
+            // Function to update the displayed image
+            function updateImage() {
+                projectImage.src = projectImages[currentImageIndex];
+            }
+            
+            // Previous button click handler
+            prevButton.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex - 1 + projectImages.length) % projectImages.length;
+                updateImage();
+            });
+            
+            // Next button click handler
+            nextButton.addEventListener('click', function() {
+                currentImageIndex = (currentImageIndex + 1) % projectImages.length;
+                updateImage();
+            });
+        });
+    </script>
+</body>
+</html>

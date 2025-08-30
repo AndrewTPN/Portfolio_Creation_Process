@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew Nguyen | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="logo">Andrew<span class="accent-dot">.</span></div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="resume.html">Resume</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="hire-button">Hire me</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container home-container">
+            <div class="home-left">
+                <p class="subtitle">Soft-Dev</p>
+                
+                <h1 class="main-heading">
+                    Hello I'm<br>
+                    <span class="highlight">Andrew</span>
+                </h1>
+                
+                <p class="description">
+                    I excel at crafting elegant digital experiences and
+                    I am proficient in various programming languages and
+                    technologies.
+                </p>
+                
+                <div class="action-buttons">
+                    <a href="#" class="download-button">
+                        <i data-lucide="download"></i>
+                        DOWNLOAD RESUME
+                    </a>
+                    
+                    <div class="social-links">
+                        <a href="https://github.com/AndrewTPN" class="social-link">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/andrew-nguyen-7285972b2/" class="social-link">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i data-lucide="mail"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="home-right">
+                <div class="profile-image-container">
+                    <div class="rotating-border"></div>
+                    <div class="profile-image">
+                        <img src="profile.jpg" alt="Andrew">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container stats-container">
+            <div class="stat-item">
+                <h3 class="stat-number">2</h3>
+                <p class="stat-label">Years of<br>experience</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number">5</h3>
+                <p class="stat-label">Projects<br>completed</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number">2</h3>
+                <p class="stat-label">Technologies<br>mastered</p>
+            </div>
+            <div class="stat-item">
+                <h3 class="stat-number">70</h3>
+                <p class="stat-label">Code<br>commits</p>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/main.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
