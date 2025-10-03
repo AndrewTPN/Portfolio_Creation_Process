@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import emailjs from 'emailjs-com';
+import { sendContactEmails } from '../utils/emailService';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -14,28 +14,62 @@ export default function Contact() {
     message: ''
   });
 
+  // Initialize EmailJS
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+    }
+  }, []);
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    
+    // Map form field names to state properties
+    const fieldMap = {
+      'from_name': 'name',
+      'from_email': 'email', 
+      'from_phone': 'phone',
+      'service': 'service',
+      'message': 'message'
+    };
+    
+    const stateKey = fieldMap[name] || name;
+    
     setFormData(prev => ({
       ...prev,
-      [name]: value
+      [stateKey]: value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    emailjs.sendForm(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-      e.target,
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-    )
-      .then(() => {
-        alert('Message sent!');
-        setFormData({ name: '', email: '', phone: '', service: '', message: '' });
-      }, (error) => {
-        alert('Failed to send message.');
-      });
+    
+    // Debug: Check what environment variables are loaded
+    console.log('Environment check:');
+    console.log('SERVICE_ID:', process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID);
+    console.log('TEMPLATE_ID:', process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID);
+    console.log('PUBLIC_KEY:', process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY);
+    console.log('AUTO_REPLY_TEMPLATE_ID:', process.env.NEXT_PUBLIC_EMAILJS_AUTO_REPLY_TEMPLATE_ID);
+    
+    // Check if EmailJS is properly configured
+    if (!process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 
+        !process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 
+        !process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+      alert('Email service is not configured. Please contact me directly at andrewng142@gmail.com');
+      return;
+    }
+    
+    // Send both emails using the email service
+    const result = await sendContactEmails(formData, e.target);
+    
+    if (result.success) {
+      alert('Message sent successfully! You will receive a confirmation email shortly.');
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    } else {
+      console.error('Email sending failed:', result.error);
+      alert('Failed to send message. Please try again or contact me directly at andrewng142@gmail.com');
+    }
   };
 
   return (
@@ -58,7 +92,7 @@ export default function Contact() {
               <div className="form-row">
                 <input
                   type="text"
-                  name="name"
+                  name="from_name"
                   placeholder="Name"
                   value={formData.name}
                   onChange={handleInputChange}
@@ -66,7 +100,7 @@ export default function Contact() {
                 />
                 <input
                   type="email"
-                  name="email"
+                  name="from_email"
                   placeholder="Email address"
                   value={formData.email}
                   onChange={handleInputChange}
@@ -77,7 +111,7 @@ export default function Contact() {
               <div className="form-row">
                 <input
                   type="tel"
-                  name="phone"
+                  name="from_phone"
                   placeholder="Phone number"
                   value={formData.phone}
                   onChange={handleInputChange}
