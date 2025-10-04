@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { sendContactEmails } from '../utils/emailService';
+import emailjs from 'emailjs-com';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
